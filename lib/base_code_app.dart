@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const BaseCodeApp());
-}
+import '../application/application.dart';
 
 class BaseCodeApp extends StatefulWidget {
   const BaseCodeApp({super.key});
@@ -32,6 +30,9 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(EnvironmentConfiguration.environment.toString()),
+      ),
       body: const Placeholder(),
     );
   }
