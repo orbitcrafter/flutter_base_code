@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_base_code/base_code_app.dart';
 
+import '../di/injector.dart';
 import '../type/type.dart';
 
 class EnvironmentConfiguration {
@@ -41,7 +42,9 @@ class EnvironmentConfiguration {
     throw Error();
   }
 
-  void run() {
+  void run() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Injector.registerDependencies();
     runApp(const BaseCodeApp());
   }
 }
