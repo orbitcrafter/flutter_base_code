@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../application/application.dart';
@@ -12,7 +13,7 @@ class BaseCodeApp extends StatefulWidget {
 class _BaseCodeAppState extends State<BaseCodeApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Home(),
     );
@@ -31,6 +32,9 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: RouterConfiguration.router,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
     );
   }
 }

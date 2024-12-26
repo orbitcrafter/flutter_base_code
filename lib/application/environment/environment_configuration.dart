@@ -1,8 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_base_code/base_code_app.dart';
 
-import '../di/injector.dart';
-import '../type/type.dart';
+import '../../application/application.dart';
+import '../../presentation/presentation.dart';
 
 class EnvironmentConfiguration {
   final EnvironmentType _environmentType;
@@ -45,6 +46,16 @@ class EnvironmentConfiguration {
   void run() async {
     WidgetsFlutterBinding.ensureInitialized();
     await Injector.registerDependencies();
-    runApp(const BaseCodeApp());
+    await EasyLocalization.ensureInitialized();
+
+    runApp(
+      EasyLocalization(
+        startLocale: LocaleManager.getPreferredLocale(),
+        supportedLocales: LocaleManager.supportedLocales,
+        path: 'assets/translations',
+        fallbackLocale: LocaleManager.koLocale,
+        child: const BaseCodeApp(),
+      ),
+    );
   }
 }

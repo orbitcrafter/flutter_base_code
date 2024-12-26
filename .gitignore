@@ -30,6 +30,14 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+ios/Podfile
+ios/Flutter/Debug.xcconfig
+ios/Flutter/Release.xcconfig
+macos/Podfile
+macos/Flutter/Flutter-Debug.xcconfig
+macos/Flutter/Flutter-Release.xcconfig
+macos/Flutter/GeneratedPluginRegistrant.swift
+.vscode/
 
 # Symbolication related
 app.*.symbols
