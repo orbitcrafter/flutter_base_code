@@ -1,6 +1,8 @@
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:flutter_base_code/application/application.dart';
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+
+import '../../barrel.dart';
 
 class Injector {
   Injector._();
@@ -23,7 +25,16 @@ class Injector {
     _instance.registerLazySingleton<DeviceManager>(() => DeviceManager());
   }
 
-  static _registerNetworks() async {}
+  static _registerNetworks() async {
+    _instance.registerLazySingleton<Dio>(
+      () => ApiClient(
+        clientBaseUrl: EnvironmentConfiguration.baseUrl,
+        customInterceptors: [
+          BaseHeaderInterceptor(),
+        ],
+      ),
+    );
+  }
 
   static _registerRepositories() async {}
 }
