@@ -27,7 +27,7 @@ class EnvironmentConfiguration {
 
   static get environment => _instance?._environmentType;
 
-  static String baseUrl() {
+  static String get baseUrl {
     if (isLocal) {
       return "http://localhost:8080";
     }
