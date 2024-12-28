@@ -1,3 +1,7 @@
 {
-  "serviceName": "serviceName En"
+  "serviceName": "serviceName En",
+  "appTitle": "TrackIt",
+  "appSubtitle": "Small Records, Big Changes",
+  "continueWithGoogle": "Continue with Google",
+  "unknownError": "An unknown error occurred"
 }
