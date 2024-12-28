@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base_code/application/application.dart';
 import 'package:go_router/go_router.dart';
@@ -13,23 +14,31 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _goSignIn();
+    _checkAuthAndNavigate();
   }
 
-  Future<void> _goSignIn() async {
-    // 예시: API 호출
+  Future<void> _checkAuthAndNavigate() async {
     await Future.delayed(const Duration(seconds: 2));
     if (!mounted) return;
-    context.goNamed(RouterLocation.signIn);
+
+    try {
+      final User? currentUser = FirebaseAuth.instance.currentUser;
+      if (currentUser != null) {
+        context.goNamed(RouterLocation.home);
+      } else {
+        context.goNamed(RouterLocation.signIn);
+      }
+    } catch (e) {
+      context.goNamed(RouterLocation.signIn);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("splash"),
+    return const Scaffold(
+      body: Center(
+        child: CircularProgressIndicator(),
       ),
-      body: const Placeholder(),
     );
   }
 }
